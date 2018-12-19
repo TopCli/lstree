@@ -3,6 +3,10 @@
     "version": "0.1.0",
     "description": "",
     "main": "index.js",
+    "preferGlobal": true,
+    "bin": {
+        "lstree": "./bin/index.js"
+    },
     "scripts": {
         "prepublishOnly": "pkg-ok",
         "test": "ava --verbose",

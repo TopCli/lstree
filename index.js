@@ -9,6 +9,8 @@ const { join } = require("path");
 const { yellow, gray, green } = require("kleur");
 const is = require("@slimio/is");
 
+const IGNNORE_FILE = new Set(["node_module", "coverage", "docs", ".nyc_output", ".git"]);
+
 /**
  * @version 0.1.0
  * @method printTree
@@ -16,7 +18,6 @@ const is = require("@slimio/is");
  *  Does not take into account the skipped folders or file contained in the Set named "IGNORE_FILE"
  * @memberof lstree
  * @param {!string} dir directory path. Path can handle "/" and "\" separator and not end with a separator
- * @param {number=} pDepth depth level from the root folder
  * @param {number=} pRootPath path of the root folder if there is recursivity
  * @returns {void}
  * @example
@@ -39,7 +40,7 @@ const is = require("@slimio/is");
  * ├ package.json
  * └ README.md
  */
-async function lstree(dir, pDepth = 0, pRootPath = null) {
+async function lstree(dir, pRootPath = null) {
     if (is.nullOrUndefined(dir)) {
         throw new Error("Current working directory path is missing");
     }
@@ -83,7 +84,7 @@ async function lstree(dir, pDepth = 0, pRootPath = null) {
                 yellow(`├─📁 ${elem}`);
             console.log(`${strAddDepth}${(strDir)}`);
 
-            await lstree(join(dir, elem), depth, rootPath);
+            await lstree(join(dir, elem), rootPath);
             count++;
         }
         else {
@@ -96,5 +97,5 @@ async function lstree(dir, pDepth = 0, pRootPath = null) {
         console.log(yellow(`${strAddDepth}${ind === last ? "└" : "├"} ${gray(`${val}`)}`));
     }
 }
-
+// lstree("D:/test");
 module.exports = lstree;
