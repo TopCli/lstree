@@ -75,6 +75,9 @@ async function lstree(dir, pRootPath = null) {
     }
 
     for (const elem of elems) {
+        if (IGNNORE_FILE.has(elem)) {
+            continue;
+        }
         const xstat = await stat(join(dir, elem));
         if (xstat.isDirectory()) {
             // Print folders befor files
@@ -97,5 +100,5 @@ async function lstree(dir, pRootPath = null) {
         console.log(yellow(`${strAddDepth}${ind === last ? "└" : "├"} ${gray(`${val}`)}`));
     }
 }
-// lstree("D:/test");
+
 module.exports = lstree;
