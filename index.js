@@ -66,6 +66,9 @@ async function lstree(dir, pRootPath = null) {
     }
 
     const elems = await readdir(dir);
+    const statFiles = await Promise.all(elems.map(
+        (file) => stat(join(dir, file))
+    ));
     const files = [];
     let count = 0;
 
@@ -74,24 +77,26 @@ async function lstree(dir, pRootPath = null) {
         console.log(green("project tree :"));
     }
 
-    for (const elem of elems) {
-        if (IGNNORE_FILE.has(elem)) {
+    // eslint-disable-next-line
+    for (let i = 0; i < statFiles.length; i++) {
+        if (IGNNORE_FILE.has(elems[i])) {
             continue;
         }
-        const xstat = await stat(join(dir, elem));
-        if (xstat.isDirectory()) {
+
+        const statFile = statFiles[i];
+        if (statFile.isDirectory()) {
             // Print folders befor files
             // Only for the first folder, beggin with ┌ insted of ├
             const strDir = depth === 0 && count === 0 ?
-                yellow(`┌─📁 ${elem}`) :
-                yellow(`├─📁 ${elem}`);
+                yellow(`┌─📁 ${elems[i]}`) :
+                yellow(`├─📁 ${elems[i]}`);
             console.log(`${strAddDepth}${(strDir)}`);
 
-            await lstree(join(dir, elem), rootPath);
+            await lstree(join(dir, elems[i]), rootPath);
             count++;
         }
         else {
-            files.push(elem);
+            files.push(elems[i]);
         }
     }
     const last = files.length - 1;
