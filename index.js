@@ -6,34 +6,58 @@ const { readdir, stat } = require("fs").promises;
 const { join } = require("path");
 
 // Require Third-party Dependencies
-const { yellow, gray, green } = require("kleur");
+const { yellow, gray, green, cyan } = require("kleur");
 const is = require("@slimio/is");
 
-/** 
+/**
  * @version 0.1.0
  * @method tree
  * @desc desc clojure
  * @memberof lstree
  * @param {Object=} options object representing the options for customizing the tree view.
  * @param {String[]=} options.ignore allows you to exclude files or folders from the tree.
- * @param {Array=} options.desc allows you to add a description for files to their right.
+ * @param {Boolean=} option.viewDescription Set to true it display description of files to their right.
+ * @param {Map=} options.description allows you to add a description for files to their right.
+ * The key is the name of file, value is the description of the file.
  * @return {Promise}
- * 
+ *
  * @example
  * const options = {
- *      ignore: ["folderName", "fileName.ext", "fuu", "text.txt"]
+ *      ignore: ["folderName", "fileName.ext", "fuu", "text.txt"],
+ *      viewDescription: true,
+ *      description: new Map([["suprise.txt", "Descritpion of surprise file"]])
  * }
  * tree(options)(process.cwd());
  * // OR
  * const closure = tree(options);
  * options("C:/path/to/your/directory");
  */
-function tree(options) {
+function tree(options = { viewDescription: false }) {
     const IGNNORE_FILE = new Set(["node_module", "coverage", "docs", ".nyc_output", ".git"]);
-    if (!is.nullOrUndefined(options) && !is.nullOrUndefined(options.ignore)) {
+    const DESC_FILE = new Map([
+        [".eslintrc", "ESLint configuration"],
+        [".editorconfig", "Configuration for the code editor"],
+        [".gitignore", "Files to ignore on GIT"],
+        [".npmignore", "Files to ignore when publishing the NPM package"],
+        [".npmrc", "Local configuration of NPM"],
+        ["LICENCE", "Legal license of the project"],
+        ["CONTRIBUTING.md", "Code of Conduct & Contribution Rules for the SlimIO Project"],
+        ["commitlint.config.json", "Configuration of the convention to respect for GIT commits"],
+        ["jsdoc.json", "Configuration to generate the JSDoc with the command npm run doc"],
+        ["package.json", "Manifest of the project"],
+        ["README.md", "Documentation of the projet (start, use...)"]
+    ]);
+    if (!is.nullOrUndefined(options.ignore)) {
         for (const optIgnore of options.ignore) {
             if (!IGNNORE_FILE.has(optIgnore)) {
                 IGNNORE_FILE.add(optIgnore);
+            }
+        }
+    }
+    if (!is.nullOrUndefined(options.description)) {
+        for (const [key, val] of options.description) {
+            if (!DESC_FILE.has(key)) {
+                DESC_FILE.set(key, val);
             }
         }
     }
@@ -129,7 +153,14 @@ function tree(options) {
         const last = files.length - 1;
         // Print all files after folders
         for (const [ind, val] of files.entries()) {
-            console.log(yellow(`${strAddDepth}${ind === last ? "└" : "├"} ${gray(`${val}`)}`));
+            if (options.viewDescription && DESC_FILE.has(val)) {
+                // ajouter la desc a la droite
+                const desc = DESC_FILE.get(val);
+                console.log(yellow(`${strAddDepth}${ind === last ? "└" : "├"} ${gray(`${val}`)} ${cyan(`(${desc})`)}`));
+            }
+            else {
+                console.log(yellow(`${strAddDepth}${ind === last ? "└" : "├"} ${gray(`${val}`)}`));
+            }
         }
     };
 }
