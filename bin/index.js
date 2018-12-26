@@ -5,4 +5,4 @@ const process = require("process");
 
 // Require internal dependencies
 const lstree = require("../index");
-lstree(process.cwd());
+lstree()(process.cwd());
