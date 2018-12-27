@@ -8,6 +8,7 @@ const { join } = require("path");
 // Require Third-party Dependencies
 const { yellow, gray, green, cyan } = require("kleur");
 const is = require("@slimio/is");
+const { parseArg, argDefinition } = require("@slimio/arg-parser");
 
 /**
  * @version 0.1.0
@@ -61,6 +62,10 @@ function tree(options = { viewDescription: false }) {
             }
         }
     }
+
+    const argParsed = parseArg([
+        argDefinition("-d --depth [number=0]", "Limit the tree depth display. root is equal to 0")
+    ]);
 
     /**
      * @version 0.1.0
@@ -121,7 +126,8 @@ function tree(options = { viewDescription: false }) {
             (file) => stat(join(dir, file))
         ));
         const files = [];
-        let count = 0;
+        // number of folder into a specific directory
+        let nbFolder = 0;
 
         // Print only one time at the begginning
         if (depth === 0) {
@@ -137,19 +143,23 @@ function tree(options = { viewDescription: false }) {
             const statFile = statFiles[i];
             if (statFile.isDirectory()) {
                 // Print folders befor files
+                nbFolder++;
                 // Only for the first folder, beggin with ┌ insted of ├
-                const strDir = depth === 0 && count === 0 ?
+                const strDir = depth === 0 && nbFolder === 1 ?
                     yellow(`┌─📁 ${elems[i]}`) :
                     yellow(`├─📁 ${elems[i]}`);
                 console.log(`${strAddDepth}${(strDir)}`);
 
+                if (argParsed.has("depth") && argParsed.get("depth") <= depth) {
+                    continue;
+                }
                 await lstree(join(dir, elems[i]), rootPath);
-                count++;
             }
             else {
                 files.push(elems[i]);
             }
         }
+
         const last = files.length - 1;
         // Print all files after folders
         for (const [ind, val] of files.entries()) {
