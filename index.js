@@ -46,19 +46,22 @@ function tree(options = {}) {
         ["package.json", "Manifest of the project"],
         ["README.md", "Documentation of the projet (start, use...)"]
     ]);
+
     if (!is.nullOrUndefined(options.ignore)) {
         for (const optIgnore of options.ignore) {
-            if (!IGNNORE_FILE.has(optIgnore)) {
-                IGNNORE_FILE.add(optIgnore);
-            }
+            IGNNORE_FILE.add(optIgnore);
         }
     }
-    if (!is.nullOrUndefined(options.description)) {
+
+    if (is.map(options.description)) {
         for (const [key, val] of options.description) {
             if (!DESC_FILE.has(key)) {
                 DESC_FILE.set(key, val);
             }
         }
+    }
+    else {
+        throw new Error("options.descrition parameter must be a map");
     }
 
     const argParsed = parseArg([

@@ -8,8 +8,7 @@ const tree = require("../index");
 
 const options = {
     ignore: ["ZZZZ", "docs", "test.doc", "fuu", "bar"],
-    viewDescription: false,
-    description: new Map([["suprise.txt", "Fichiers surprise"]])
+    description: new Map([["suprise.txt", "Fichiers surprise"], ["newTxt.txt", "DESCRIPTION"]])
 };
 
 tree(options)(process.cwd());
