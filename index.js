@@ -17,7 +17,6 @@ const { parseArg, argDefinition } = require("@slimio/arg-parser");
  * @memberof lstree
  * @param {Object=} options object representing the options for customizing the tree view.
  * @param {String[]=} options.ignore allows you to exclude files or folders from the tree.
- * @param {Boolean=} option.viewDescription Set to true it display description of files to their right.
  * @param {Map=} options.description allows you to add a description for files to their right.
  * The key is the name of file, value is the description of the file.
  * @return {Promise}
@@ -25,7 +24,6 @@ const { parseArg, argDefinition } = require("@slimio/arg-parser");
  * @example
  * const options = {
  *      ignore: ["folderName", "fileName.ext", "fuu", "text.txt"],
- *      viewDescription: true,
  *      description: new Map([["suprise.txt", "Descritpion of surprise file"]])
  * }
  * tree(options)(process.cwd());
@@ -33,7 +31,7 @@ const { parseArg, argDefinition } = require("@slimio/arg-parser");
  * const closure = tree(options);
  * options("C:/path/to/your/directory");
  */
-function tree(options = { viewDescription: false }) {
+function tree(options = {}) {
     const IGNNORE_FILE = new Set(["node_module", "coverage", "docs", ".nyc_output", ".git"]);
     const DESC_FILE = new Map([
         [".eslintrc", "ESLint configuration"],
@@ -64,7 +62,8 @@ function tree(options = { viewDescription: false }) {
     }
 
     const argParsed = parseArg([
-        argDefinition("-d --depth [number=0]", "Limit the tree depth display. root is equal to 0")
+        argDefinition("-d --depth [number=0]", "Limit the tree depth display. root is equal to 0"),
+        argDefinition("-v --view", "Display files description to their right")
     ]);
 
     /**
@@ -163,7 +162,7 @@ function tree(options = { viewDescription: false }) {
         const last = files.length - 1;
         // Print all files after folders
         for (const [ind, val] of files.entries()) {
-            if (options.viewDescription && DESC_FILE.has(val)) {
+            if (argParsed.get("view") && DESC_FILE.has(val)) {
                 // ajouter la desc a la droite
                 const desc = DESC_FILE.get(val);
                 console.log(yellow(`${strAddDepth}${ind === last ? "└" : "├"} ${gray(`${val}`)} ${cyan(`(${desc})`)}`));

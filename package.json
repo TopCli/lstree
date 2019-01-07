@@ -21,7 +21,7 @@
     "author": "SlimIO",
     "license": "MIT",
     "dependencies": {
-        "@slimio/arg-parser": "^0.2.1",
+        "@slimio/arg-parser": "^0.2.2",
         "@slimio/is": "^1.4.0",
         "kleur": "^3.0.1"
     },
