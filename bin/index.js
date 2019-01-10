@@ -5,4 +5,11 @@ const process = require("process");
 
 // Require internal dependencies
 const lstree = require("../index");
-lstree()(process.cwd());
+
+// Add options
+const options = {
+    ignore: [],
+    description: new Map()
+};
+
+lstree(options)(process.cwd());

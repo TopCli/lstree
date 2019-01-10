@@ -23,13 +23,13 @@ const { parseArg, argDefinition } = require("@slimio/arg-parser");
  *
  * @example
  * const options = {
- *      ignore: ["folderName", "fileName.ext", "fuu", "text.txt"],
- *      description: new Map([["suprise.txt", "Descritpion of surprise file"]])
- * }
+ *     ignore: ["folderName", "docFolder", "file.txt", "file.js"],
+ *     description: new Map([["nameFile.txt", "File description"], ["newfile.h", "File description"]])
+ * };
  * tree(options)(process.cwd());
  * // OR
- * const closure = tree(options);
- * options("C:/path/to/your/directory");
+ * const lstree = tree(options);
+ * lstree("C:/path/to/your/directory");
  */
 function tree(options = {}) {
     const IGNNORE_FILE = new Set(["node_module", "coverage", "docs", ".nyc_output", ".git"]);
@@ -65,7 +65,7 @@ function tree(options = {}) {
     }
 
     const argParsed = parseArg([
-        argDefinition("-d --depth [number=0]", "Limit the tree depth display. root is equal to 0"),
+        argDefinition("-d --depth [number=2]", "Limit the tree depth display. root is equal to 0"),
         argDefinition("-v --view", "Display files description to their right")
     ]);
 
