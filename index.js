@@ -55,9 +55,7 @@ function tree(options = {}) {
 
     if (is.map(options.description)) {
         for (const [key, val] of options.description) {
-            if (!DESC_FILE.has(key)) {
-                DESC_FILE.set(key, val);
-            }
+            DESC_FILE.set(key, val);
         }
     }
     else {
