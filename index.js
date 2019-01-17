@@ -8,7 +8,6 @@ const { join } = require("path");
 // Require Third-party Dependencies
 const { yellow, gray, green, cyan } = require("kleur");
 const is = require("@slimio/is");
-const { parseArg, argDefinition } = require("@slimio/arg-parser");
 
 /**
  * @version 0.1.0
@@ -18,6 +17,8 @@ const { parseArg, argDefinition } = require("@slimio/arg-parser");
  * @param {Object=} options object representing the options for customizing the tree view.
  * @param {String[]=} options.ignore allows you to exclude files or folders from the tree.
  * @param {Map=} options.description allows you to add a description for files to their right.
+ * @param {Number} [options.depth=1] Wanted depth
+ * @param {Boolean} [options.view=false] view file description
  * The key is the name of file, value is the description of the file.
  * @return {Promise}
  *
@@ -31,8 +32,8 @@ const { parseArg, argDefinition } = require("@slimio/arg-parser");
  * const lstree = tree(options);
  * lstree("C:/path/to/your/directory");
  */
-function tree(options = {}) {
-    const IGNORE_FILE = new Set(["node_module", "coverage", "docs", ".nyc_output", ".git"]);
+function tree(options = Object.create(null)) {
+    const IGNORE_FILE = new Set(["node_modules", "coverage", "docs", ".nyc_output", ".git"]);
     const DESC_FILE = new Map([
         [".eslintrc", "ESLint configuration"],
         [".editorconfig", "Configuration for the code editor"],
@@ -47,7 +48,8 @@ function tree(options = {}) {
         ["README.md", "Documentation of the projet (start, use...)"]
     ]);
 
-    if (!is.nullOrUndefined(options.ignore)) {
+    // Retrieve and apply arguments
+    if (is.array(options.ignore)) {
         for (const optIgnore of options.ignore) {
             IGNORE_FILE.add(optIgnore);
         }
@@ -58,14 +60,8 @@ function tree(options = {}) {
             DESC_FILE.set(key, val);
         }
     }
-    else {
-        throw new Error("options.descrition parameter must be a map");
-    }
-
-    const argParsed = parseArg([
-        argDefinition("-d --depth [number=2]", "Limit the tree depth display. root is equal to 0"),
-        argDefinition("-v --view", "Display files description to their right")
-    ]);
+    const wantedDepth = is.number(options.depth) ? options.depth : 1;
+    const viewFileDescription = is.bool(options.view) ? options.view : false;
 
     /**
      * @version 0.1.0
@@ -150,7 +146,7 @@ function tree(options = {}) {
                     yellow(`├─📁 ${elems[i]}`);
                 console.log(`${strAddDepth}${(strDir)}`);
 
-                if (argParsed.has("depth") && argParsed.get("depth") <= depth) {
+                if (wantedDepth <= depth) {
                     continue;
                 }
                 await lstree(join(dir, elems[i]), rootPath);
@@ -163,7 +159,7 @@ function tree(options = {}) {
         const last = files.length - 1;
         // Print all files after folders
         for (const [ind, val] of files.entries()) {
-            if (argParsed.get("view") && DESC_FILE.has(val)) {
+            if (viewFileDescription && DESC_FILE.has(val)) {
                 // ajouter la desc a la droite
                 const desc = DESC_FILE.get(val);
                 console.log(yellow(`${strAddDepth}${ind === last ? "└" : "├"} ${gray(`${val}`)} ${cyan(`(${desc})`)}`));
