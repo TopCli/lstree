@@ -32,7 +32,7 @@ const { parseArg, argDefinition } = require("@slimio/arg-parser");
  * lstree("C:/path/to/your/directory");
  */
 function tree(options = {}) {
-    const IGNNORE_FILE = new Set(["node_module", "coverage", "docs", ".nyc_output", ".git"]);
+    const IGNORE_FILE = new Set(["node_module", "coverage", "docs", ".nyc_output", ".git"]);
     const DESC_FILE = new Map([
         [".eslintrc", "ESLint configuration"],
         [".editorconfig", "Configuration for the code editor"],
@@ -49,7 +49,7 @@ function tree(options = {}) {
 
     if (!is.nullOrUndefined(options.ignore)) {
         for (const optIgnore of options.ignore) {
-            IGNNORE_FILE.add(optIgnore);
+            IGNORE_FILE.add(optIgnore);
         }
     }
 
@@ -138,7 +138,7 @@ function tree(options = {}) {
 
         // eslint-disable-next-line
         for (let i = 0; i < statFiles.length; i++) {
-            if (IGNNORE_FILE.has(elems[i])) {
+            if (IGNORE_FILE.has(elems[i])) {
                 continue;
             }
 
