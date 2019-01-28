@@ -6,7 +6,7 @@ const { readdir, stat } = require("fs").promises;
 const { join } = require("path");
 
 // Require Third-party Dependencies
-const { yellow, gray, green, cyan } = require("kleur");
+const { yellow, white, cyan, gray } = require("kleur");
 const is = require("@slimio/is");
 
 /**
@@ -127,7 +127,7 @@ function tree(options = Object.create(null)) {
 
         // Print only one time at the begginning
         if (depth === 0) {
-            console.log(green("project tree :"));
+            console.log(gray("\n > project tree\n"));
         }
 
         // eslint-disable-next-line
@@ -162,10 +162,10 @@ function tree(options = Object.create(null)) {
             if (viewFileDescription && DESC_FILE.has(val)) {
                 // ajouter la desc a la droite
                 const desc = DESC_FILE.get(val);
-                console.log(yellow(`${strAddDepth}${ind === last ? "└" : "├"} ${gray(`${val}`)} ${cyan(`(${desc})`)}`));
+                console.log(yellow(`${strAddDepth}${ind === last ? "└" : "├"} ${white(`${val}`)} ${cyan(`(${desc})`)}`));
             }
             else {
-                console.log(yellow(`${strAddDepth}${ind === last ? "└" : "├"} ${gray(`${val}`)}`));
+                console.log(yellow(`${strAddDepth}${ind === last ? "└" : "├"} ${white(`${val}`)}`));
             }
         }
     };
