@@ -60,6 +60,7 @@ function tree(options = Object.create(null)) {
             DESC_FILE.set(key, val);
         }
     }
+
     const wantedDepth = is.number(options.depth) ? options.depth : 1;
     const viewFileDescription = is.bool(options.view) ? options.view : false;
 
@@ -138,6 +139,10 @@ function tree(options = Object.create(null)) {
 
             const statFile = statFiles[i];
             if (statFile.isDirectory()) {
+                if (wantedDepth <= depth) {
+                    continue;
+                }
+
                 // Print folders befor files
                 nbFolder++;
                 // Only for the first folder, beggin with ┌ insted of ├
@@ -146,9 +151,6 @@ function tree(options = Object.create(null)) {
                     yellow(`├─📁 ${elems[i]}`);
                 console.log(`${strAddDepth}${(strDir)}`);
 
-                if (wantedDepth <= depth) {
-                    continue;
-                }
                 await lstree(join(dir, elems[i]), rootPath);
             }
             else {
