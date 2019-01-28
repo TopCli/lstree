@@ -16,7 +16,10 @@
     },
     "keywords": [
         "SlimIO",
-        "monitoring"
+        "tree",
+        "stdout",
+        "terminal",
+        "lstree"
     ],
     "author": "SlimIO",
     "license": "MIT",
