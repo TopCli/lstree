@@ -29,5 +29,25 @@ To use it as a cmd:
 $ lstree -d 2
 ```
 
+## API
+
+### three(options?: lstree.options): lstree
+Create a new lstree clojure function. Available options are:
+```ts
+interface options {
+    ignore?: string[];
+    description?: Map<string, string>;
+    depth?: number;
+    showFilesDescriptor?: boolean;
+}
+```
+
+### lstree(dir: string, depth?: number): Promise<void>
+Call lstree at the wanted location. lstree is an Asynchronous function.
+
+```js
+lstree(__dirname).catch(console.error);
+```
+
 ## Licence
 MIT
