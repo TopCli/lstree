@@ -18,7 +18,7 @@ const is = require("@slimio/is");
  * @param {String[]=} options.ignore allows you to exclude files or folders from the tree.
  * @param {Map=} options.description allows you to add a description for files to their right.
  * @param {Number} [options.depth=1] Wanted depth
- * @param {Boolean} [options.view=false] view file description
+ * @param {Boolean} [options.showFilesDescriptor=false] view file description
  * The key is the name of file, value is the description of the file.
  * @return {Promise}
  *
@@ -62,7 +62,7 @@ function tree(options = Object.create(null)) {
     }
 
     const wantedDepth = is.number(options.depth) ? options.depth : 1;
-    const viewFileDescription = is.bool(options.view) ? options.view : false;
+    const viewFileDescription = is.bool(options.showFilesDescriptor) ? options.showFilesDescriptor : false;
 
     /**
      * @version 0.1.0

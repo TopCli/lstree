@@ -8,10 +8,10 @@ const lstree = require("../index");
 
 const argParsed = parseArg([
     argDefinition("-d --depth [number=2]", "Limit the tree depth display. root is equal to 0"),
-    argDefinition("-v --view", "Display files description to their right")
+    argDefinition("-s --showfd", "Display files description to their right")
 ]);
 
 lstree({
     depth: argParsed.get("depth"),
-    view: argParsed.get("view")
+    showFilesDescriptor: argParsed.get("showfd")
 })(process.cwd());

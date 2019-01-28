@@ -3,7 +3,7 @@ declare namespace lstree {
         ignore?: string[];
         description?: Map<string, string>;
         depth?: number;
-        view?: boolean;
+        showFilesDescriptor?: boolean;
     }
 
     function lstree(dir: string, pRootPath?: number): void;
