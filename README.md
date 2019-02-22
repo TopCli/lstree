@@ -1,9 +1,13 @@
 # lstree
+![V0.1.0](https://img.shields.io/badge/version-0.1.0-blue.svg)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/SlimIO/lstree/commit-activity)
 ![MIT](https://img.shields.io/github/license/mashape/apistatus.svg)
-![V0.1.0](https://img.shields.io/badge/version-0.1.0-blue.svg)
 
-Stdout to terminal the current working dir tree. Can work as CLI or API.
+System Tree Printer as CLI (with a Node.js API). Stdout to the terminal the current working dir tree.
+
+<p align="center">
+    <img src="https://i.imgur.com/e01OJwY.png" width="450">
+</p>
 
 ## Getting Started
 This package is available in the Node Package Repository and can be easily installed with [npm](https://docs.npmjs.com/getting-started/what-is-npm) or [yarn](https://yarnpkg.com).
@@ -42,12 +46,14 @@ interface options {
 }
 ```
 
-### lstree(dir: string, depth?: number): Promise<void>
+Default ignored files and directories are: `node_modules`, `coverage`, `docs`, `.nyc_output`, `.git`.
+
+### lstree(dir: string, depth?: number): Promise< void >
 Call lstree at the wanted location. lstree is an Asynchronous function.
 
 ```js
 lstree(__dirname).catch(console.error);
 ```
 
-## Licence
+## License
 MIT
