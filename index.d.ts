@@ -6,8 +6,7 @@ declare namespace lstree {
         showFilesDescriptor?: boolean;
     }
 
-    function lstree(dir: string, pRootPath?: number): void;
-    export function tree(options?: options): lstree;
+    export function tree(options?: options): (dir: string, pRootPath?: number) => void;
 }
 
 export as namespace lstree;
