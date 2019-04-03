@@ -1,7 +1,7 @@
 {
     "name": "@slimio/lstree",
     "version": "0.1.0",
-    "description": "",
+    "description": "System Tree Printer",
     "main": "index.js",
     "preferGlobal": true,
     "bin": {
