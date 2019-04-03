@@ -6,7 +6,7 @@
 System Tree Printer as CLI (with a Node.js API). Stdout to the terminal the current working dir tree.
 
 <p align="center">
-    <img src="https://i.imgur.com/e01OJwY.png" width="450">
+    <img src="https://i.imgur.com/PTo2okT.png">
 </p>
 
 ## Requirements
@@ -35,6 +35,14 @@ To use it as a cmd:
 ```bash
 $ lstree -d 2
 ```
+
+Available script arguments are:
+| name | type | defaultValue |
+| --- | --- | --- |
+| -d --depth | number | **0** |
+| -s --showfd | boolean | **false** |
+| -i --ignore | array | **[]** |
+
 
 ## API
 
