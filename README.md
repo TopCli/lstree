@@ -9,6 +9,9 @@ System Tree Printer as CLI (with a Node.js API). Stdout to the terminal the curr
     <img src="https://i.imgur.com/e01OJwY.png" width="450">
 </p>
 
+## Requirements
+- Node.js v10 or higher.
+
 ## Getting Started
 This package is available in the Node Package Repository and can be easily installed with [npm](https://docs.npmjs.com/getting-started/what-is-npm) or [yarn](https://yarnpkg.com).
 
