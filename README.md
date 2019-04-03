@@ -37,6 +37,7 @@ $ lstree -d 2
 ```
 
 Available script arguments are:
+
 | name | type | defaultValue |
 | --- | --- | --- |
 | -d --depth | number | **0** |
