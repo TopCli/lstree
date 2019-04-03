@@ -2,6 +2,8 @@
 ![V0.1.0](https://img.shields.io/badge/version-0.1.0-blue.svg)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/SlimIO/lstree/commit-activity)
 ![MIT](https://img.shields.io/github/license/mashape/apistatus.svg)
+![dep](https://img.shields.io/david/slimio/lstree.svg)
+[![Build Status](https://travis-ci.com/SlimIO/lstree.svg?branch=master)](https://travis-ci.com/SlimIO/lstree)
 
 System Tree Printer as CLI (with a Node.js API). Stdout to the terminal the current working dir tree.
 
