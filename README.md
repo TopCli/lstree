@@ -4,7 +4,7 @@
 ![MIT](https://img.shields.io/github/license/mashape/apistatus.svg)
 ![dep](https://img.shields.io/david/SlimIO/lstree.svg)
 ![size](https://img.shields.io/bundlephobia/min/@slimio/lstree.svg)
-[![Build Status](https://travis-ci.com/SlimIO/lstree.svg?branch=master)](https://travis-ci.com/SlimIO/lstree)
+[![Build Status](https://travis-ci.com/SlimIO/lstree.svg?branch=master)](https://travis-ci.com/SlimIO/lstree) [![Greenkeeper badge](https://badges.greenkeeper.io/SlimIO/lstree.svg)](https://greenkeeper.io/)
 
 System Tree Printer as CLI (with a Node.js API). Stdout to the terminal the current working dir tree.
 
