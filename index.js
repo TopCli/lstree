@@ -15,7 +15,7 @@ const is = require("@slimio/is");
  * @desc desc clojure
  * @memberof lstree
  * @param {Object=} options object representing the options for customizing the tree view.
- * @param {String[]=} options.ignore allows you to exclude files or folders from the tree.
+ * @param {String[]} [options.ignore] allows you to exclude files or folders from the tree.
  * @param {Map=} options.description allows you to add a description for files to their right.
  * @param {Number} [options.depth=1] Wanted depth
  * @param {Boolean} [options.showFilesDescriptor=false] view file description
