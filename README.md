@@ -69,5 +69,13 @@ Call lstree at the wanted location. lstree is an Asynchronous function.
 lstree(__dirname).catch(console.error);
 ```
 
+## Dependencies
+
+|Name|Refactoring|Security Risk|Usage|
+|---|---|---|---|
+|[@slimio/arg-parser](https://github.com/SlimIO/ArgParser#readme)|Minor|Low|CLI argument parser|
+|[@slimio/is](https://github.com/SlimIO/is#readme)|Minor|Low|Type checker|
+|[kleur](https://github.com/lukeed/kleur#readme)|Minor|Low|CLI color|
+
 ## License
 MIT
