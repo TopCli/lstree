@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * @namespace lstree
  */
@@ -11,16 +13,16 @@ const is = require("@slimio/is");
 
 /**
  * @version 0.1.0
- * @method tree
- * @desc desc clojure
+ * @function tree
+ * @description desc clojure
  * @memberof lstree
- * @param {Object=} options object representing the options for customizing the tree view.
- * @param {String[]} [options.ignore] allows you to exclude files or folders from the tree.
- * @param {Map=} options.description allows you to add a description for files to their right.
- * @param {Number} [options.depth=1] Wanted depth
- * @param {Boolean} [options.showFilesDescriptor=false] view file description
+ * @param {object} [options] object representing the options for customizing the tree view.
+ * @param {string[]} [options.ignore] allows you to exclude files or folders from the tree.
+ * @param {Map} [options.description] allows you to add a description for files to their right.
+ * @param {number} [options.depth=1] Wanted depth
+ * @param {boolean} [options.showFilesDescriptor=false] view file description
  * The key is the name of file, value is the description of the file.
- * @return {Promise}
+ * @returns {Promise}
  *
  * @example
  * const options = {
@@ -66,12 +68,12 @@ function tree(options = Object.create(null)) {
 
     /**
      * @version 0.1.0
-     * @method lsTree
-     * @desc Print the list of the entire folder and file in the directory.
+     * @function lsTree
+     * @description Print the list of the entire folder and file in the directory.
      *  Does not take into account the skipped folders or file contained in the Set named "IGNORE_FILE"
      * @memberof lstree
      * @param {!string} dir directory path. Path can handle "/" and "\" separator and not end with a separator
-     * @param {number=} pRootPath path of the root folder if there is recursivity
+     * @param {number} [pRootPath] path of the root folder if there is recursivity
      * @returns {void}
      * @example
      * tree("C:/path/to/your/directory/newProject");

@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+"use strict";
+
 // Require Third-party Dependencies
 const { parseArg, argDefinition } = require("@slimio/arg-parser");
 
