@@ -21,6 +21,11 @@
         "terminal",
         "lstree"
     ],
+    "files": [
+        "index.js",
+        "index.d.ts",
+        "bin/index.js"
+    ],
     "author": "SlimIO",
     "license": "MIT",
     "dependencies": {
