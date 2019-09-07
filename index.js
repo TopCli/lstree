@@ -147,7 +147,7 @@ function tree(options = Object.create(null)) {
                 const strDir = depth === 0 && nbFolder === 1 ?
                     yellow(`┌─📁 ${elems[i]}`) :
                     yellow(`├─📁 ${elems[i]}`);
-                console.log(`${strAddDepth}${(strDir)}`);
+                console.log(`${strAddDepth}${strDir}`);
 
                 if (wantedDepth <= depth) {
                     continue;
