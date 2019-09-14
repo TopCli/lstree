@@ -29,9 +29,9 @@
     "author": "SlimIO",
     "license": "MIT",
     "dependencies": {
-        "@slimio/arg-parser": "^0.3.2",
         "@slimio/is": "^1.5.1",
-        "kleur": "^3.0.3"
+        "kleur": "^3.0.3",
+        "sade": "^1.6.1"
     },
     "devDependencies": {
         "@commitlint/cli": "^8.1.0",
