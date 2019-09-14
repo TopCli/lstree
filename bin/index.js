@@ -14,8 +14,6 @@ const prog = sade("", true)
     .action((opts) => {
         const ignore = typeof opts.ignore === "string" ? opts.ignore.split(",") : [];
         const depth = typeof opts.depth === "boolean" ? 0 : Number(opts.depth);
-        console.log(ignore);
-        console.log(depth);
         lstree({
             depth: Number.isNaN(depth) ? 0 : depth,
             showFilesDescriptor: Boolean(opts.showfd),
