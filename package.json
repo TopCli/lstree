@@ -1,69 +1,73 @@
 {
-    "name": "@slimio/lstree",
-    "version": "0.1.0",
-    "description": "System Tree Printer",
-    "main": "index.js",
-    "preferGlobal": true,
-    "bin": {
-        "lstree": "./bin/index.js"
-    },
-    "scripts": {
-        "prepublishOnly": "pkg-ok",
-        "test": "cross-env psp && nyc --reporter=lcov ava --verbose",
-        "doc": "jsdoc -c ./jsdoc.json -r -R ./README.md -P ./package.json --verbose",
-        "coverage": "codecov",
-        "report": "nyc report --reporter=html"
-    },
-    "keywords": [
-        "SlimIO",
-        "tree",
-        "stdout",
-        "terminal",
-        "lstree"
-    ],
-    "files": [
-        "index.js",
-        "index.d.ts",
-        "bin/index.js"
-    ],
-    "author": "SlimIO",
-    "license": "MIT",
-    "dependencies": {
-        "@slimio/is": "^1.5.1",
-        "kleur": "^3.0.3",
-        "sade": "^1.7.3"
-    },
-    "devDependencies": {
-        "@commitlint/cli": "^8.3.5",
-        "@commitlint/config-conventional": "^8.3.4",
-        "@escommunity/minami": "^1.0.0",
-        "@slimio/eslint-config": "^4.1.0",
-        "@slimio/psp": "^0.11.1",
-        "ava": "^3.8.2",
-        "codecov": "^3.7.0",
-        "cross-env": "^7.0.2",
-        "eslint": "^7.0.0",
-        "execa": "^4.0.1",
-        "husky": "^4.2.5",
-        "jsdoc": "^3.6.4",
-        "nyc": "^15.0.1",
-        "pkg-ok": "^2.3.1"
-    },
-    "engines": {
-        "node": ">=12"
-    },
-    "husky": {
-        "hooks": {
-            "pre-push": "cross-env eslint index.js && npm test",
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-        }
-    },
-    "nyc": {
-        "check-coverage": true,
-        "per-file": false,
-        "lines": 98,
-        "statements": 98,
-        "functions": 98,
-        "branches": 90
+  "name": "@slimio/lstree",
+  "version": "0.1.0",
+  "description": "System Tree Printer",
+  "main": "index.js",
+  "preferGlobal": true,
+  "bin": {
+    "lstree": "./bin/index.js"
+  },
+  "scripts": {
+    "prepublishOnly": "pkg-ok",
+    "test": "cross-env psp && nyc --reporter=lcov ava --verbose",
+    "doc": "jsdoc -c ./jsdoc.json -r -R ./README.md -P ./package.json --verbose",
+    "coverage": "codecov",
+    "report": "nyc report --reporter=html",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "keywords": [
+    "SlimIO",
+    "tree",
+    "stdout",
+    "terminal",
+    "lstree"
+  ],
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "bin/index.js"
+  ],
+  "author": "SlimIO",
+  "license": "MIT",
+  "dependencies": {
+    "@slimio/is": "^1.5.1",
+    "kleur": "^3.0.3",
+    "sade": "^1.7.3",
+    "snyk": "^1.339.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@escommunity/minami": "^1.0.0",
+    "@slimio/eslint-config": "^4.1.0",
+    "@slimio/psp": "^0.11.1",
+    "ava": "^3.8.2",
+    "codecov": "^3.7.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.0.0",
+    "execa": "^4.0.1",
+    "husky": "^4.2.5",
+    "jsdoc": "^3.6.4",
+    "nyc": "^15.0.1",
+    "pkg-ok": "^2.3.1"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "cross-env eslint index.js && npm test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": false,
+    "lines": 98,
+    "statements": 98,
+    "functions": 98,
+    "branches": 90
+  },
+  "snyk": true
 }
