@@ -36,6 +36,16 @@
         "doc",
         "review"
       ]
+    },
+    {
+      "login": "Captainfive",
+      "name": "MONTES Irvin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38983657?v=4",
+      "profile": "https://github.com/Captainfive",
+      "contributions": [
+        "doc",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
