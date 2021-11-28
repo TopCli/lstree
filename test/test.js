@@ -1,8 +1,7 @@
-"use strict";
-
 // Require Third-party Dependencies
-const avaTest = require("ava");
+import test from "tape";
 
-avaTest("Default test", async(assert) => {
-    assert.pass();
+test("default test", async(tape) => {
+  tape.is(1, 1);
+  tape.end();
 });
