@@ -74,7 +74,7 @@ lstree(__dirname).catch(console.error);
 ## Contributors ✨
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -85,6 +85,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://www.linkedin.com/in/thomas-gentilhomme/"><img src="https://avatars.githubusercontent.com/u/4438263?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gentilhomme</b></sub></a><br /><a href="https://github.com/TopCli/lstree/commits?author=fraxken" title="Code">💻</a> <a href="https://github.com/TopCli/lstree/commits?author=fraxken" title="Documentation">📖</a> <a href="https://github.com/TopCli/lstree/pulls?q=is%3Apr+reviewed-by%3Afraxken" title="Reviewed Pull Requests">👀</a> <a href="#security-fraxken" title="Security">🛡️</a> <a href="https://github.com/TopCli/lstree/issues?q=author%3Afraxken" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/mark-malaj-99b1b8b7/"><img src="https://avatars.githubusercontent.com/u/15210179?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mark MALAJ</b></sub></a><br /><a href="https://github.com/TopCli/lstree/commits?author=Markobobby" title="Code">💻</a></td>
   </tr>
 </table>
 
