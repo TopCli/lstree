@@ -9,7 +9,7 @@
 System Tree Printer as CLI (with a Node.js API). Stdout to the terminal the current working dir tree.
 
 <p align="center">
-    <img src="https://i.imgur.com/PTo2okT.png">
+    <img src="https://i.imgur.com/0lA271j.png">
 </p>
 
 ## Requirements
