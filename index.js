@@ -3,9 +3,11 @@ import fs from "fs/promises";
 import path from "path";
 
 // Import Third-party Dependencies
-import { yellow, white, cyan, gray } from "kleur";
+import kleur from "kleur";
 import is from "@slimio/is";
 
+// CONSTANTS
+const { yellow, white, cyan, gray } = kleur;
 /**
  * @version 0.1.0
  * @function tree
