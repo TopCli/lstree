@@ -1,7 +1,7 @@
 # lstree
 ![version](https://img.shields.io/badge/dynamic/json.svg?style=for-the-badge&url=https://raw.githubusercontent.com/TopCli/lstree/master/package.json&query=$.version&label=Version)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)](https://github.com/TopCli/lstree/commit-activity)
-[![mit](https://img.shields.io/github/license/Naereen/StrapDown.js.svg?style=for-the-badge)](https://github.com/TopCli/lstree/blob/master/LICENSE)
+[![mit](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://github.com/TopCli/lstree/blob/master/LICENSE)
 [![OpenSSF
 Scorecard](https://api.securityscorecards.dev/projects/github.com/TopCli/lstree/badge?style=for-the-badge)](https://api.securityscorecards.dev/projects/github.com/TopCli/tlstree)
 ![build](https://img.shields.io/github/actions/workflow/status/TopCli/lstree/node.js.yml?style=for-the-badge)
