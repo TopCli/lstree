@@ -55,11 +55,18 @@ Available script arguments are:
 ### tree(options?: lstree.options): lstree
 Create a new lstree clojure function. Available options are:
 ```ts
-interface options {
+interface LStreeOptions {
   ignore?: string[];
   description?: Map<string, string>;
   depth?: number;
   showFilesDescriptor?: boolean;
+  showTitle?: boolean;
+  title?: string;
+  margin?: {
+    top?: number;
+    left?: number;
+    bottom?: number;
+  };
 }
 ```
 
