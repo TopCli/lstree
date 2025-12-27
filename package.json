@@ -9,9 +9,14 @@
   },
   "scripts": {
     "prepublishOnly": "pkg-ok",
-    "test": "node --test test/ut/",
+    "test": "node --test ./test/ut/test.js",
     "coverage": "c8 -r html npm test",
     "lint": "eslint ."
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public",
+    "provenance": true
   },
   "keywords": [
     "tree",
@@ -26,19 +31,12 @@
   ],
   "author": "GENTILHOMME Thomas <gentilhomme.thomas@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "@slimio/is": "^2.0.0",
-    "kleur": "^4.1.5",
-    "sade": "^1.8.1"
-  },
   "devDependencies": {
-    "@nodesecure/eslint-config": "^1.8.0",
-    "c8": "^8.0.1",
-    "eslint": "^8.50.0",
-    "pkg-ok": "^3.0.0",
-    "strip-ansi": "^7.1.0"
+    "@openally/config.eslint": "^2.2.0",
+    "c8": "^10.1.3",
+    "pkg-ok": "^3.0.0"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=24"
   }
 }

@@ -1,24 +1,65 @@
 #!/usr/bin/env node
 
-// Import Third-party Dependencies
-import sade from "sade";
+// Import Node.js Dependencies
+import { parseArgs } from "node:util";
 
-// Import internal dependencies
+// Import Internal Dependencies
 import lstree from "../index.js";
 
-const prog = sade("", true)
-  .option("-d --depth [number=0]", "Limit the tree depth display. root is equal to 0", 0)
-  .option("-s --showfd", "Display files description to their right", false)
-  .option("-i --ignore [array]", "List of files to ignore", [])
-  .action((opts) => {
-    const ignore = typeof opts.ignore === "string" ? opts.ignore.split(",") : [];
-    const depth = typeof opts.depth === "boolean" ? 0 : Number(opts.depth);
+const { values } = parseArgs({
+  options: {
+    depth: {
+      type: "string",
+      short: "d",
+      default: "0"
+    },
+    showfd: {
+      type: "boolean",
+      short: "s",
+      default: false
+    },
+    ignore: {
+      type: "string",
+      short: "i",
+      default: ""
+    },
+    help: {
+      type: "boolean",
+      short: "h",
+      default: false
+    }
+  },
+  strict: true,
+  allowPositionals: false
+});
 
-    lstree({
-      depth: Number.isNaN(depth) ? 0 : depth,
-      showFilesDescriptor: Boolean(opts.showfd),
-      ignore
-    })(process.cwd());
-  });
+if (values.help) {
+  console.log(`
+lstree - System Tree Printer
 
-prog.parse(process.argv);
+Usage:
+  lstree [options]
+
+Options:
+  -d, --depth <number>    Limit the tree depth display. Root is equal to 0 (default: 0)
+  -s, --showfd            Display files description to their right (default: false)
+  -i, --ignore <list>     Comma-separated list of files/folders to ignore
+  -h, --help              Display this help message
+
+Examples:
+  lstree
+  lstree --depth 2
+  lstree -d 2 -s
+  lstree --ignore node_modules,dist
+`);
+  process.exit(0);
+}
+
+const ignore = values.ignore ? values.ignore.split(",") : [];
+const depth = Number(values.depth);
+
+lstree({
+  depth: Number.isNaN(depth) ? 0 : depth,
+  showFilesDescriptor: values.showfd,
+  ignore
+})(process.cwd());

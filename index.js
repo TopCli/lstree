@@ -1,11 +1,10 @@
 // Import Node.js Dependencies
-import fs from "fs/promises";
-import path from "path";
+import fs from "node:fs/promises";
+import path from "node:path";
 import os from "node:os";
 
-// Import Third-party Dependencies
-import kleur from "kleur";
-import is from "@slimio/is";
+// Import Internal Dependencies
+import kleur from "./src/colors.js";
 
 const { yellow, white, cyan, gray } = kleur;
 
@@ -89,20 +88,20 @@ export default function tree(options = Object.create(null)) {
   ]);
 
   // Retrieve and apply arguments
-  if (is.array(options.ignore)) {
+  if (Array.isArray(options.ignore)) {
     for (const optIgnore of options.ignore) {
       IGNORE_FILE.add(optIgnore);
     }
   }
 
-  if (is.map(options.description)) {
+  if (typeof options.description === "object" && options.description !== null) {
     for (const [key, val] of options.description) {
       DESC_FILE.set(key, val);
     }
   }
 
-  const wantedDepth = is.number(options.depth) ? options.depth : 0;
-  const viewFileDescription = is.bool(options.showFilesDescriptor) ? options.showFilesDescriptor : false;
+  const wantedDepth = typeof options.depth === "number" ? options.depth : 0;
+  const viewFileDescription = typeof options.showFilesDescriptor === "boolean" ? options.showFilesDescriptor : false;
 
   /**
    * @version 0.1.0
@@ -134,7 +133,7 @@ export default function tree(options = Object.create(null)) {
    * └ README.md
    */
   return async function lstree(dir, pRootPath = null) {
-    if (is.nullOrUndefined(dir)) {
+    if (dir === null || dir === undefined) {
       throw new Error("Current working directory path is missing");
     }
 
@@ -149,7 +148,8 @@ export default function tree(options = Object.create(null)) {
     // Calculate Depth with root folder and number of separators "\"
     const depth = dir.replace(rootPath, "").match(/[/\\]/g, "")?.length ?? 0;
 
-    let strAddDepth = "".padStart(2 * options.margin?.left ?? 0, " ");
+    const marginLeft = options.margin?.left ?? 0;
+    let strAddDepth = "".padStart(2 * marginLeft, " ");
     if (depth > 0) {
       for (let index = 0; index < depth; index++) {
         strAddDepth += yellow("│ ");
@@ -165,12 +165,11 @@ export default function tree(options = Object.create(null)) {
     let nbFolder = 0;
 
     // Print only one time at the begginning
-    if (depth === 0 && (is.bool(options.showTitle) ? options.showTitle : true)) {
+    if (depth === 0 && (typeof options.showTitle === "boolean" ? options.showTitle : true)) {
       const title = options.title ?? "project tree";
       console.log(gray(`${os.EOL} > ${title}${os.EOL}`));
     }
 
-    // eslint-disable-next-line
     for (let i = 0; i < statFiles.length; i++) {
       if (IGNORE_FILE.has(elems[i])) {
         continue;
